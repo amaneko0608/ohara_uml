@@ -1,0 +1,121 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0" version="28.2.1">
+  <diagram id="T7ZZ_kyEx_GZaEYYVm2Y" name="ページ1">
+    <mxGraphModel dx="1071" dy="484" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-3" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;" vertex="1" parent="1">
+          <mxGeometry x="70" y="40" width="20" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-4" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="A6LzIg_RCBcn0KXQ9aLq-3">
+          <mxGeometry x="5" y="90" width="10" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-5" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="A6LzIg_RCBcn0KXQ9aLq-3">
+          <mxGeometry x="5" y="210" width="10" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-10" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlBoundary;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="255" y="40" width="50" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-15" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="A6LzIg_RCBcn0KXQ9aLq-10">
+          <mxGeometry x="20" y="98.75" width="10" height="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-16" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="A6LzIg_RCBcn0KXQ9aLq-10">
+          <mxGeometry x="20" y="210" width="10" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-11" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlBoundary;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="175" y="40" width="50" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-14" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="A6LzIg_RCBcn0KXQ9aLq-11">
+          <mxGeometry x="20" y="93.75" width="10" height="52.5" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-12" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlEntity;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="459" y="40" width="40" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-18" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="A6LzIg_RCBcn0KXQ9aLq-12">
+          <mxGeometry x="15" y="230" width="10" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-13" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlControl;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="345" y="40" width="40" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-17" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="A6LzIg_RCBcn0KXQ9aLq-13">
+          <mxGeometry x="15" y="220" width="10" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-19" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+          <mxGeometry x="80" y="380" width="10" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-20" value="活性区間&lt;div&gt;Activation Bar&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="90" y="380" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-22" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="200" y="460" as="sourcePoint" />
+            <mxPoint x="200" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-23" value="生存線&lt;div&gt;Life Line&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="210" y="380" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-25" value="学生登録を選択()" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=5;exitPerimeter=0;" edge="1" parent="1" source="A6LzIg_RCBcn0KXQ9aLq-4" target="A6LzIg_RCBcn0KXQ9aLq-14">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="120" y="240" as="sourcePoint" />
+            <mxPoint x="200" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-27" value="メニュー&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;画面&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="150" y="80" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-28" value="学生登録&lt;div&gt;画面&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="245" y="80" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-29" value="学生情報&lt;div&gt;登録&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="330" y="80" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-30" value="学生&lt;div&gt;オブジェクト&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="429" y="80" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-31" value="" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontStyle=0;strokeWidth=3;" edge="1" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="40" y="50" as="sourcePoint" />
+            <mxPoint x="40" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-32" value="時間の流れ" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry y="350" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-33" value="表示()" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=5;exitPerimeter=0;" edge="1" parent="1" source="A6LzIg_RCBcn0KXQ9aLq-14" target="A6LzIg_RCBcn0KXQ9aLq-15">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="230" y="170" as="sourcePoint" />
+            <mxPoint x="310" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-34" value="操作()&lt;div&gt;Method&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="290" y="419.09" as="sourcePoint" />
+            <mxPoint x="370" y="419.09" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-35" value="メッセージ&lt;div&gt;Message&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="385" y="380" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-36" value="学生データ入力()" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=5;exitPerimeter=0;" edge="1" parent="1" source="A6LzIg_RCBcn0KXQ9aLq-5" target="A6LzIg_RCBcn0KXQ9aLq-16">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="160" y="300" as="sourcePoint" />
+            <mxPoint x="240" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-37" value="起動()" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=5;exitPerimeter=0;entryX=0.002;entryY=-0.016;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="A6LzIg_RCBcn0KXQ9aLq-16" target="A6LzIg_RCBcn0KXQ9aLq-17">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="280" y="260" as="sourcePoint" />
+            <mxPoint x="360" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="A6LzIg_RCBcn0KXQ9aLq-38" value="学生データ登録()" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=5;exitPerimeter=0;entryX=-0.319;entryY=-0.041;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="A6LzIg_RCBcn0KXQ9aLq-17" target="A6LzIg_RCBcn0KXQ9aLq-18">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="380" y="250" as="sourcePoint" />
+            <mxPoint x="445" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
