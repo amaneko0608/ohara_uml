@@ -1,0 +1,32 @@
+@startuml Web訪問者システム-ログアウトシーケンス図
+hide footbox
+skinparam boundaryBackgroundColor #D5E8D4
+skinparam controlBackgroundColor  #F8CECC
+skinparam entityBackgroundColor   #DAE8FC
+
+actor 訪問者 as A
+boundary システム画面 as B1
+control ログアウト制御 as C1
+entity セッション情報 as E1
+boundary ログイン画面 as B2
+
+A -> B1: 「ログアウト」操作を行う()
+activate B1
+
+B1 -> C1: ログアウト処理開始()
+activate C1
+
+alt セッション有効
+    C1 -> E1: セッション情報破棄()
+    activate E1
+    E1 --> C1: 破棄完了()
+    deactivate E1
+else セッション無効（タイムアウト/他端末ログアウト）
+    C1 -> B2: ログイン画面表示()
+end
+
+C1 -> B2: ログイン画面へリダイレクト()
+deactivate C1
+deactivate B1
+
+@enduml

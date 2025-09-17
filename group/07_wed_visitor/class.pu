@@ -1,0 +1,22 @@
+@startuml Web訪問者システムシステムクラス図
+skinparam classAttributeIconSize 0
+hide circle
+
+class Web訪問者システム {
+ -ユーザID
+ -パスワード
+ -名前
+ -学校・所属
+ -メールアドレス
+ -電話番号
+ -年齢
+
+ +登録する()
+ +自分と他の人の情報を参照する()
+ +変更する()
+ +削除する()
+ +ログインする()
+ +ログアウトする()
+}
+
+@enduml

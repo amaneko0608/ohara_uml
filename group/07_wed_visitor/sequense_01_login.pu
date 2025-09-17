@@ -1,0 +1,53 @@
+@startuml Web訪問者システム-ログインシーケンス図
+hide footbox
+skinparam boundaryBackgroundColor #D5E8D4
+skinparam controlBackgroundColor  #F8CECC
+skinparam entityBackgroundColor   #DAE8FC
+
+actor 訪問者 as A
+boundary ログイン画面 as B1
+control ログイン制御 as C1
+entity 利用者情報 as E1
+entity パスワードハッシュ as E2
+entity セッション情報 as E3
+
+A -> B1: ユーザIDとパスワードを入力()
+activate B1
+
+B1 -> C1: 入力情報送信()
+activate C1
+
+alt 入力未入力または不正形式
+    C1 -> B1: エラーメッセージ表示\n再入力を促す
+else ユーザID存在確認
+    C1 -> E1: ユーザIDで検索()
+    activate E1
+    E1 --> C1: ユーザ情報返却
+    deactivate E1
+
+    alt ユーザIDが存在しない
+        C1 -> B1: エラーメッセージ表示\n新規登録を促す
+    else アカウント無効化
+        C1 -> B1: 「アカウント利用停止」と表示\nログイン拒否
+    else パスワード照合
+        C1 -> E2: パスワードハッシュと照合()
+        activate E2
+        E2 --> C1: 照合結果
+        deactivate E2
+
+        alt パスワード不一致
+            C1 -> B1: 「ユーザIDまたはパスワードが間違っています」と表示
+        else 認証成功
+            C1 -> E3: セッション生成()
+            activate E3
+            E3 --> C1: セッション情報返却
+            deactivate E3
+            C1 -> B1: トップページへリダイレクト
+        end
+    end
+end
+
+deactivate C1
+deactivate B1
+
+@enduml

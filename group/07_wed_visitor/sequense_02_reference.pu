@@ -1,0 +1,37 @@
+@startuml Web訪問者システム-新規登録シーケンス図
+hide footbox
+skinparam boundaryBackgroundColor #D5E8D4
+skinparam controlBackgroundColor  #F8CECC
+skinparam entityBackgroundColor   #DAE8FC
+
+actor 訪問者 as A
+boundary 新規登録画面 as B1
+control 登録制御 as C1
+entity 利用者情報 as E1
+
+A -> B1: 登録情報を入力(\nユーザID, パスワード, 名前,\n学校・所属, メールアドレス, 電話番号, 年齢)
+activate B1
+
+A -> B1: 「登録」ボタンを押す()
+B1 -> C1: 入力情報送信()
+activate C1
+
+C1 -> C1: 入力内容検証(\n必須項目, パスワード強度)
+C1 -> E1: ユーザID・メールアドレス重複確認()
+
+alt 正常登録
+    C1 -> E1: 新規アカウント作成()
+    E1 --> C1: 作成完了()
+    C1 -> B1: 登録完了メッセージ表示\nログイン画面へ誘導
+else 入力不備
+    C1 -> B1: エラーメッセージ表示\n再入力を促す
+else 既存ユーザID/メール
+    C1 -> B1: 「このユーザIDまたはメールは使用済み」と表示
+else システムエラー
+    C1 -> B1: 「登録できませんでした。再試行してください」と表示
+end
+
+deactivate C1
+deactivate B1
+
+@enduml

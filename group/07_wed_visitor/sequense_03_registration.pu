@@ -1,0 +1,32 @@
+@startuml Web訪問者システム-訪問者一覧表示シーケンス図
+hide footbox
+skinparam boundaryBackgroundColor #D5E8D4
+skinparam controlBackgroundColor  #F8CECC
+skinparam entityBackgroundColor   #DAE8FC
+
+actor 訪問者 as A
+boundary システム画面 as B1
+control 一覧表示制御 as C1
+entity 訪問者情報 as E1
+
+A -> B1: 「訪問者一覧」メニューを選択()
+activate B1
+
+B1 -> C1: 一覧表示処理開始()
+activate C1
+
+C1 -> E1: 登録済訪問者情報取得()
+activate E1
+E1 --> C1: 登録情報返却()
+deactivate E1
+
+alt 登録訪問者が存在する
+    C1 -> B1: ユーザID順に一覧表示(\nユーザID, 氏名, 学校・所属, メール, 電話, 年齢)
+else 登録訪問者が存在しない
+    C1 -> B1: 「該当する訪問者はいません」と表示
+end
+
+deactivate C1
+deactivate B1
+
+@enduml
