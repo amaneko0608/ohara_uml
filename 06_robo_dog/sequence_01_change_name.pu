@@ -30,7 +30,7 @@ A -> B2: 新しい名前を入力()
 
 B2 -> C2: 新しい名前を登録()
 activate C2
-C2 -> E: setMyName()
+C2 -> E: setNewName()
 activate E
 E --> C2: 保存完了()
 deactivate E
