@@ -1,24 +1,23 @@
 @startuml Robodogクラス図
 skinparam classAttributeIconSize 0
 hide circle
-
+ 
 class RoboDog {
- -名前
- -時刻
- -朝の挨拶
- -昼の挨拶
- -夜の挨拶
- -1つ目の整数
- -2つ目の整数
- -足し算の結果
-
- +getMyName()
- +setMyName()
- +setNewTime()
- +getMyGreeting()
- +2つの整数を設定()
- +足し算結果登録()
- +足し算結果取得()
+-名前
+-時刻
+-朝の挨拶
+-昼の挨拶
+-夜の挨拶
+-1つ目の整数
+-2つ目の整数
+-足し算の結果
+ 
++getMyName()
++setMyName()
++setNewTime()
++getMyGreeting()
++setTwoValues()
++setAndGetResult()
 }
-
+ 
 @enduml
