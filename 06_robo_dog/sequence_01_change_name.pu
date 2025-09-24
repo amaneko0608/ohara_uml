@@ -35,7 +35,7 @@ activate E
 E --> C2: 保存完了()
 deactivate E
 
-C2 -> B3: 表示()
+C2 -> B3: 画面内に結果を表示()
 deactivate C2
 deactivate B2
 activate B3
