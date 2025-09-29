@@ -1,0 +1,60 @@
+@startuml BBショップユースケース図
+left to right direction
+
+' アクター定義
+actor 顧客 as Customer
+actor システム管理者 as SysAdmin
+actor 倉庫スタッフ as WarehouseStaff
+actor サポート担当者 as SupportStaff
+actor 配送業者 as Delivery
+
+
+' 販売システムユースケース
+rectangle "販売システム" {
+  usecase "商品を選択する" as UC1
+  usecase "カートに追加する" as UC2
+  usecase "注文する" as UC3
+  usecase "支払いを行う" as UC4
+  usecase "注文状況を確認する" as UC5
+  usecase "返品を申請する" as UC6
+  usecase "注文キャンセル" as UC13
+}
+
+' 管理システムユースケース
+rectangle "管理システム" {
+  usecase "注文を確認する" as UC7
+  usecase "在庫を確認する" as UC8
+  usecase "梱包作業を行う" as UC9
+  usecase "発送処理を行う" as UC10
+  usecase "返品を受け付ける" as UC11
+  usecase "返金処理を行う" as UC12
+}
+
+' 顧客とユースケースの関係
+Customer --> UC1
+Customer --> UC2
+Customer --> UC3
+Customer --> UC4
+Customer --> UC5
+Customer --> UC6
+Customer --> UC13
+
+
+
+' 管理者とユースケースの関係
+SysAdmin --> UC7
+SysAdmin --> UC8
+SysAdmin --> UC9
+SysAdmin --> UC10
+SysAdmin --> UC11
+SysAdmin --> UC12
+WarehouseStaff --> UC9
+WarehouseStaff --> UC10
+SupportStaff --> UC6
+SupportStaff --> UC11
+SupportStaff --> UC12
+Delivery --> UC10
+Customer --> UC13
+SysAdmin --> UC13
+
+@enduml
