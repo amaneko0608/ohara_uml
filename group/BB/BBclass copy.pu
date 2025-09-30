@@ -1,134 +1,93 @@
-@startuml
+@startuml BBショップ注文管理クラス図
 skinparam classAttributeIconSize 0
 
-' Customer (顧客)
-class Customer {
-  - customerID         
-  ' 顧客ID
-  - name               
-  ' 氏名
-  - email              
-  ' メールアドレス
-  - address            
-  ' 住所
-  + register()         
-  ' 顧客登録
-  + updateInfo()       
-  ' 情報更新
-  + viewOrderHistory() 
-  ' 注文履歴確認
+' 顧客クラス
+class 顧客 {
+  - 顧客ID
+  - 氏名
+  - メールアドレス
+  - 住所
+  + 顧客登録()
+  + 情報更新()
+  + 注文履歴確認()
 }
 
-' Product (商品)
-class Product {
-  - productID          
-  ' 商品ID
-  - productName        
-  ' 商品名
-  - price              
-  ' 価格
-  - stockQuantity      
-  ' 在庫数量
-  + addProduct()       
-  ' 商品登録
-  + updateProductInfo()
-  ' 商品情報更新
-  + updatePrice()      
-  ' 価格更新
-  + updateStock()      
-  ' 在庫更新
+' カートクラス
+class カート {
+  - カートID
+  - 顧客ID
+  + 商品追加()
+  + 商品削除()
+  + カート内容確認()
 }
 
-' OrderDetail (注文明細)
-class OrderDetail {
-  - quantity           
-  ' 数量
-  - subtotal           
-  ' 小計
-  + setQuantity()      
-  ' 数量設定
-  + calculateSubtotal()
-  ' 小計計算
+' 商品クラス
+class 商品 {
+  - 商品ID
+  - 商品名
+  - 価格
+  + 商品登録()
+  + 商品情報更新()
+  + 価格更新()
 }
 
-' Order (注文)
-class Order {
-  - orderID            
-  ' 注文ID
-  - totalAmount        
-  ' 合計金額
-  - orderStatus        
-  ' 注文ステータス
-  - orderDate          
-  ' 注文日
-  + createOrder()      
-  ' 注文登録
-  + updateStatus()     
-  ' ステータス更新
-  + calculateTotal()   
-  ' 合計金額計算
+' 注文明細クラス
+class 注文明細 {
+  - 数量
+  - 小計
+  + 数量設定()
+  + 小計計算()
 }
 
-' Payment (支払い情報)
-class Payment {
-  - paymentID          
-  ' 支払いID
-  - paymentStatus      
-  ' 支払いステータス
-  - paymentDate        
-  ' 支払い日
-  + processPayment()   
-  ' 支払い実行
-  + updatePaymentStatus() 
-  ' 支払いステータス更新
+' 注文クラス
+class 注文 {
+  - 注文ID
+  - 合計金額
+  - 注文ステータス {例：未払い、支払い済み、発送済み、キャンセル済み}
+  - 注文日
+  + 注文登録()
+  + ステータス更新()
+  + 合計金額計算()
 }
 
-' Return (返品)
-class Return {
-  - returnID           
-  ' 返品ID
-  - reason             
-  ' 返品理由
-  - returnDate         
-  ' 返品日
-  - refundAmount       
-  ' 返金額
-  + requestReturn()    
-  ' 返品申請
-  + confirmReturn()    
-  ' 返品確認
-  + processRefund()    
-  ' 返金処理
+' 支払い情報クラス
+class 支払い情報 {
+  - 支払いID
+  - 支払いステータス {例：未払い、完了、失敗}
+  - 支払い日
+  + 支払い実行()
+  + 支払いステータス更新()
 }
 
-' Shipping (配送)
-class Shipping {
-  - shippingID         
-  ' 配送ID
-  - trackingNumber     
-  ' 伝票番号
-  - shippingDate       
-  ' 発送日
-  - deliveryStatus     
-  ' 配送ステータス
-  + registerShipping() 
-  ' 発送登録
-  + updateStatus()     
-  ' 配送ステータス更新
+' 返品クラス
+class 返品 {
+  - 返品ID
+  - 返品理由
+  - 返品日
+  - 返金額
+  + 返品申請()
+  + 返品確認()
+  + 返金処理()
 }
 
-' Relationships (関連)
-Customer "1" o-- "0..*" Order           
-' 顧客は複数の注文を持つ
-Order "1" o-- "1..*" OrderDetail        
-' 注文は複数の注文明細を持つ
-OrderDetail "1" o-- "1" Product         
-' 注文明細は商品に対応
-Order "1" o-- "1" Payment               
-' 注文は必ず支払い情報を持つ
-Order "0..1" o-- "0..1" Return          
-' 注文は返品に対応する場合がある
-Order "1" o-- "0..1" Shipping           
-' 注文は配送情報を持つ
+' 配送クラス
+class 配送 {
+  - 配送ID
+  - 伝票番号
+  - 発送日
+  - 配送ステータス {例：未発送、発送済み、配達完了}
+  + 発送登録()
+  + 配送ステータス更新()
+}
+
+' 関係
+顧客 "1" o-- "1" カート
+顧客 "1" o-- "0..*" 注文
+カート "1" o-- "0..*" 商品
+注文 "1" o-- "1..*" 注文明細
+注文明細 "1" o-- "1" 商品
+注文 "1" o-- "1" 支払い情報
+注文 "0..1" o-- "0..1" 返品
+注文 "1" o-- "0..1" 配送
 
 @enduml
