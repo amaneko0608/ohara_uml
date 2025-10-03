@@ -2,7 +2,6 @@
 left to right direction
 
 actor 顧客 as C
-actor 管理者 as A
 actor 倉庫担当者 as W
 actor 配送業者 as D
 actor カスタマーサポート as S
@@ -10,23 +9,29 @@ actor カスタマーサポート as S
 rectangle 販売システム {
   usecase "商品を検索する" as UC1
   usecase "商品を選択する" as UC2
-  usecase "カートに追加する" as UC3
-  usecase "注文・支払い" as UC4
-  usecase "注文状況を確認する" as UC5
-  usecase "注文をキャンセルする" as UC6
-  usecase "返品を申請する" as UC7
+  usecase "カートに追加する" as UC3 
+  usecase "カートから削除する" as UC4
+  usecase "カート内容を確認する" as UC5
+  usecase "注文・支払いを行う" as UC6 
+  usecase "注文をキャンセルする" as UC7
+  usecase "返品を申請する" as UC8
+  usecase "新規登録" as UC14
+  usecase "退会する" as UC15
 }
 
 rectangle 管理システム {
-  usecase "注文を確認する" as UC8
   usecase "在庫を確認する" as UC9
-  usecase "発送処理を行う" as UC10
-  usecase "返品を受け付ける" as UC11
-  usecase "返金処理を行う" as UC12
-  usecase "キャンセル処理を確認する" as UC13
-  usecase "梱包作業を行う" as UC14
+  usecase "梱包登録を行う" as UC10
+  usecase "在庫を登録する" as UC16
+  usecase "在庫を変更する" as UC17
+  usecase "商品を登録する" as UC18
+  usecase "商品を変更する" as UC19
+  usecase "配送登録を行う" as UC11 
+  usecase "返品を承認する" as UC12
+  usecase "返金処理を行う" as UC13
 }
 
+' 顧客操作
 C --> UC1
 C --> UC2
 C --> UC3
@@ -34,21 +39,23 @@ C --> UC4
 C --> UC5
 C --> UC6
 C --> UC7
+C --> UC8
+C --> UC14
+C --> UC15
 
-A --> UC8
-A --> UC9
-A --> UC10
-A --> UC11
-A --> UC12
-A --> UC13
-
+' 倉庫担当者操作
 W --> UC9
-W --> UC14
 W --> UC10
+W --> UC16
+W --> UC17
+W --> UC18
+W --> UC19
 
-D --> UC10
+' 配送業者操作
+D --> UC11
 
-S --> UC11
+' カスタマーサポート操作
 S --> UC12
+S --> UC13
 
 @enduml

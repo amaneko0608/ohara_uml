@@ -1,0 +1,48 @@
+@startuml BBショップ-カート追加シーケンス図
+hide footbox
+skinparam boundaryBackgroundColor #D5E8D4
+skinparam controlBackgroundColor  #F8CECC
+skinparam entityBackgroundColor   #DAE8FC
+
+actor 顧客 as A
+boundary "商品画面" as B1
+boundary "カート画面" as B2
+control "カート追加処理" as C1
+control "在庫確認処理" as C2
+entity "在庫情報" as E1
+entity "カート" as E2
+
+' 顧客が商品画面で「カートに入れる」をクリック
+A -> B1: 「カートに入れる」をクリック()
+activate B1
+
+B1 -> C1: 追加処理リクエスト()
+activate C1
+
+C1 -> C2: 在庫確認要求()
+activate C2
+C2 -> E1: 在庫数量取得()
+activate E1
+E1 --> C2: 在庫情報
+deactivate E1
+
+C2 --> C1: 可用性情報
+deactivate C2
+
+' 在庫あり
+C1 -> E2: カートに商品を追加/更新()
+activate E2
+E2 --> C1: 更新完了
+deactivate E2
+
+C1 -> B2: 更新後のカート内容を表示()
+deactivate C1
+deactivate B1
+activate B2
+
+' 在庫なしの場合のみメッセージ送信
+alt 在庫なし
+    C1 -> B2: 「在庫切れ」メッセージを表示()
+end
+
+@enduml
