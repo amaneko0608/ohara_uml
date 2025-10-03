@@ -1,0 +1,62 @@
+@startuml 図書館システム-貸出履歴閲覧シーケンス図
+hide footbox
+skinparam boundaryBackgroundColor #D5E8D4
+skinparam controlBackgroundColor  #F8CECC
+skinparam entityBackgroundColor   #DAE8FC
+
+actor 事務職員 as A
+boundary "メニュー画面" as B1
+boundary "貸出履歴検索画面" as B2
+boundary "貸出履歴一覧画面" as B3
+control "履歴閲覧処理" as C1
+
+entity "図書情報テーブル" as BookDB
+entity "貸出情報テーブル" as LoanDB
+
+== 履歴閲覧開始 ==
+A -> B1: 貸出履歴メニューを押下()
+activate B1
+B1 -> B2: 貸出履歴検索画面を表示()
+deactivate B1
+activate B2
+
+== 書名検索 ==
+A -> B2: 書名を入力し検索
+B2 -> C1: 書名検索処理
+activate C1
+
+alt 書名未入力
+    C1 --> B2: 「書名を入力してください」と表示
+end
+
+C1 -> BookDB: 書名で図書検索（部分一致）
+activate BookDB
+BookDB --> C1: 該当図書一覧（管理番号、書名など）
+deactivate BookDB
+
+alt 該当する図書なし
+    C1 --> B2: 「該当する図書がありません」と表示
+end
+
+C1 --> B2: 図書一覧表示
+deactivate C1
+
+== 貸出履歴閲覧 ==
+A -> B2: 閲覧対象図書の管理番号を選択
+B2 -> C1: 貸出履歴取得
+activate C1
+C1 -> LoanDB: 管理番号で貸出履歴検索
+activate LoanDB
+LoanDB --> C1: 貸出履歴一覧
+deactivate LoanDB
+
+alt 貸出履歴が0件
+    C1 --> B3: 「貸出履歴がありません」と表示
+end
+
+C1 --> B3: 貸出履歴一覧画面表示
+deactivate C1
+deactivate B2
+activate B3
+
+@enduml

@@ -1,0 +1,141 @@
+@startuml BBShopOrderManagementDomainModel_Detailed
+skinparam componentStyle rectangle
+skinparam classAttributeIconSize 0
+
+' Customer entity
+class Customer {
+  -customerID : String
+  -name : String
+  -email : String
+  -phoneNumber : String
+  -address : String
+  -registrationDate : DateTime
+  +register()
+  +updateInfo()
+  +unsubscribe()
+}
+
+' Product entity
+class Product {
+  -productID : String
+  -productName : String
+  -description : String
+  -price : Decimal
+  -stockQuantity : Integer
+  -category : String
+  +updateStock()
+  +updatePrice()
+  +getProductInfo()
+  +searchProduct()
+  +addProduct()
+  +deleteProduct()
+  +updateProduct()
+}
+
+' Order entity
+class Order {
+  -orderID : String
+  -orderDate : DateTime
+  -totalAmount : Decimal
+  -orderStatus : Enum {New, Processing, Shipped, Cancelled}
+  -deliveryMethod : Enum {Courier, Mail, StorePickup}
+  -deliveryAddress : String
+  -estimatedDeliveryDate : DateTime
+  +createOrder()
+  +cancelOrder()
+  +checkOrderStatus()
+  +updateOrder()
+  +getOrderHistory()
+  +searchOrder()
+  +processOrder()
+  +completeOrder()
+  +shipOrder()
+  +returnOrder()
+  +refundOrder()
+  +updateDeliveryInfo()
+  +updateOrderStatus()
+}
+
+' OrderDetail entity
+class OrderDetail {
+  -detailID : String
+  -productID : String
+  -quantity : Integer
+  -unitPrice : Decimal
+  -subtotal : Decimal
+  +addDetail()
+  +removeDetail()
+  +updateDetail()
+  +getDetail()
+  +searchDetail()
+}
+
+' PaymentInfo entity
+class PaymentInfo {
+  -paymentID : String
+  -paymentMethod : Enum {CreditCard}
+  -paymentStatus : Enum {Unpaid, Paid, Refunded}
+  -paymentDate : DateTime
+  -cardNumber : String
+  -transactionID : String
+  +processPayment()
+  +confirmPayment()
+  +updatePayment()
+  +getPaymentHistory()
+  +searchPayment()
+  +cancelPayment()
+  +refundPayment()
+  +updatePaymentStatus()
+}
+
+' Return entity
+class Return {
+  -returnID : String
+  -returnReason : String
+  -returnDate : DateTime
+  -refundAmount : Decimal
+  -returnStatus : Enum {Requested, Approved, Completed}
+  +requestReturn()
+  +approveReturn()
+  +completeReturn()
+  +getReturnHistory()
+  +searchReturn()
+  +updateReturnStatus()
+  +processReturn()
+  +refundReturn()
+}
+
+' Cart entity
+class Cart {
+  -cartID : String
+  -customerID : String
+  +addProduct()
+  +removeProduct()
+  +viewCart()
+  +clearCart()
+  +updateCart()
+  +getCart()
+  +searchCart()
+  +calculateTotalAmount()
+}
+
+' Delivery entity
+class Delivery {
+  -deliveryID : String
+  -trackingNumber : String
+  -shipDate : DateTime
+  -deliveryStatus : Enum {Pending, Shipped, InTransit, Delivered}
+  +updateDeliveryStatus()
+  +registerShipment()
+}
+
+' Relationships
+Customer "1" -- "0..*" Order : places
+Order "1" -- "1..*" OrderDetail : includes
+Order "1" -- "1" PaymentInfo : has
+OrderDetail "1" -- "1" Product : refers to
+Return "0..1" -- "1" OrderDetail : applies to
+Order "1" -- "0..1" Delivery : has
+Customer "1" -- "1" Cart : owns
+
+@enduml

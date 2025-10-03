@@ -1,0 +1,62 @@
+@startuml LibrarySystem_LoanHistory_Sequence
+hide footbox
+skinparam boundaryBackgroundColor #D5E8D4
+skinparam controlBackgroundColor  #F8CECC
+skinparam entityBackgroundColor   #DAE8FC
+
+actor Librarian as A
+boundary "Menu Screen" as B1
+boundary "Loan History Search Screen" as B2
+boundary "Loan History List Screen" as B3
+control "LoanHistoryProcessor" as C1
+
+entity "Book Table" as BookDB
+entity "Loan Table" as LoanDB
+
+== Start Viewing Loan History ==
+A -> B1: ClickLoanHistoryMenu()
+activate B1
+B1 -> B2: DisplayLoanHistorySearchScreen()
+deactivate B1
+activate B2
+
+== Book Title Search ==
+A -> B2: EnterBookTitleAndSearch()
+B2 -> C1: SearchByTitle()
+activate C1
+
+alt Title empty
+    C1 --> B2: DisplayMessage("書名を入力してください")
+end
+
+C1 -> BookDB: SearchBooksByTitle(partial match)
+activate BookDB
+BookDB --> C1: 該当図書一覧（管理番号、書名など）
+deactivate BookDB
+
+alt No matching books
+    C1 --> B2: DisplayMessage("該当する図書がありません")
+end
+
+C1 --> B2: DisplayBookList()
+deactivate C1
+
+== View Loan History ==
+A -> B2: SelectBookByID()
+B2 -> C1: RetrieveLoanHistory()
+activate C1
+C1 -> LoanDB: SearchLoanHistoryByBookID()
+activate LoanDB
+LoanDB --> C1: 貸出履歴一覧
+deactivate LoanDB
+
+alt No loan history
+    C1 --> B3: DisplayMessage("貸出履歴がありません")
+end
+
+C1 --> B3: DisplayLoanHistoryListScreen()
+deactivate C1
+deactivate B2
+activate B3
+
+@enduml

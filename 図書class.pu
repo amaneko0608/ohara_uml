@@ -1,0 +1,88 @@
+@startuml 大原情報科学大学図書館システム-クラス図
+skinparam componentStyle rectangle
+skinparam classAttributeIconSize 0
+
+' 会員エンティティ
+class 会員 {
+  -会員番号 : String
+  -氏名 : String
+  -会員種別 : Enum {学生, 教職員}
+  -メールアドレス : String
+  -登録日 : DateTime
+  +会員登録()
+  +会員情報更新()
+  +会員削除()
+  +会員検索()
+}
+
+' 図書エンティティ
+class 図書 {
+  -管理番号 : String
+  -書名 : String
+  -著者 : String
+  -出版社 : String
+  -種類 : Enum {書籍, 雑誌}
+  -貸出状況 : Enum {貸出中, 在庫あり}
+  +貸出可能判定()
+  +図書情報取得()
+  +図書検索()
+  +図書追加()
+  +図書更新()
+  +図書削除()
+}
+
+' 予約エンティティ
+class 予約 {
+  -予約ID : String
+  -会員番号 : String
+  -ISBN : String
+  -予約日時 : DateTime
+  +予約作成()
+  +予約取消()
+  +予約情報取得()
+  +予約検索()
+}
+
+' 貸出エンティティ
+class 貸出 {
+  -貸出ID : String
+  -会員番号 : String
+  -管理番号 : String
+  -貸出日 : DateTime
+  -返却期限 : DateTime
+  +貸出処理()
+  +貸出確認()
+  +貸出延長()
+  +貸出履歴取得()
+}
+
+' 返却エンティティ
+class 返却 {
+  -返却ID : String
+  -貸出ID : String
+  -返却日 : DateTime
+  +返却処理()
+  +返却確認()
+  +延滞判定()
+  +予約者通知()
+}
+
+' 貸出履歴エンティティ
+class 貸出履歴 {
+  -履歴ID : String
+  -管理番号 : String
+  -会員番号 : String
+  -貸出日 : DateTime
+  -返却日 : DateTime
+  +履歴登録()
+  +履歴取得()
+}
+
+' 関係
+会員 "1" -- "0..*" 予約 : makes
+会員 "1" -- "0..*" 貸出 : borrows
+貸出 "1" -- "1" 図書 : refers to
+返却 "1" -- "1" 貸出 : returns
+図書 "1" -- "0..*" 貸出履歴 : has
+
+@enduml

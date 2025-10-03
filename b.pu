@@ -1,0 +1,84 @@
+@startuml 図書館システム-図書貸出シーケンス図
+hide footbox
+skinparam boundaryBackgroundColor #D5E8D4
+skinparam controlBackgroundColor  #F8CECC
+skinparam entityBackgroundColor   #DAE8FC
+
+actor 事務職員 as A
+boundary "メニュー画面" as B1
+boundary "図書貸出画面" as B2
+boundary "貸出完了画面" as B3
+control "図書貸出処理" as C1
+
+entity "会員情報テーブル" as MemberDB
+entity "図書情報テーブル" as BookDB
+entity "貸出情報テーブル" as LoanDB
+
+== 貸出開始 ==
+A -> B1: 貸出メニューを押下()
+activate B1
+B1 -> B2: 図書貸出画面を表示()
+deactivate B1
+activate B2
+
+== 会員番号入力 ==
+A -> B2: 会員番号を入力し確定()
+B2 -> C1: 会員情報確認()
+activate C1
+C1 -> MemberDB: 会員番号で検索
+activate MemberDB
+MemberDB --> C1: 氏名・会員種別
+deactivate MemberDB
+
+alt 会員番号未入力 or 未登録
+    C1 --> B2: 「会員番号を確認してください」と表示
+end
+
+C1 --> B2: 会員情報表示
+deactivate C1
+
+== 図書管理番号入力 ==
+A -> B2: 管理番号を入力し確定()
+B2 -> C1: 図書情報確認
+activate C1
+C1 -> BookDB: 管理番号で検索
+activate BookDB
+BookDB --> C1: 書名・貸出状況
+deactivate BookDB
+
+alt 管理番号未入力 or 未登録
+    C1 --> B2: 「管理番号を確認してください」と表示
+end
+
+alt 貸出上限超過 or 学生が雑誌貸出
+    C1 --> B2: 「貸出できません」と表示
+end
+
+C1 --> B2: 貸出一覧に書名表示
+deactivate C1
+
+alt 貸出一覧の図書をキャンセル
+    A -> B2: キャンセルボタン押下
+    B2 -> C1: 図書を貸出一覧から削除
+    C1 --> B2: 削除完了
+end
+
+== 貸出確定 ==
+A -> B2: 貸出を押下()
+B2 -> C1: 貸出情報登録
+activate C1
+
+alt 一冊も確定していない場合
+    C1 --> B2: 「貸し出す書籍を入力してください」と表示
+end
+
+C1 -> LoanDB: 貸出情報(管理番号, 会員番号, 貸出日, 返却期限)を保存
+activate LoanDB
+LoanDB --> C1: 保存完了
+deactivate LoanDB
+C1 -> B3: 貸出完了画面表示
+deactivate C1
+deactivate B2
+activate B3
+
+@enduml

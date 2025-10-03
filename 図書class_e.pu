@@ -1,0 +1,88 @@
+@startuml UniversityLibrarySystem_ClassDiagram
+skinparam componentStyle rectangle
+skinparam classAttributeIconSize 0
+
+' Member entity
+class Member {
+  -memberID : String
+  -name : String
+  -memberType : Enum {Student, Staff}
+  -email : String
+  -registrationDate : DateTime
+  +registerMember()
+  +updateMemberInfo()
+  +deleteMember()
+  +searchMember()
+}
+
+' Book entity
+class Book {
+  -bookID : String
+  -title : String
+  -author : String
+  -publisher : String
+  -type : Enum {Book, Magazine}
+  -loanStatus : Enum {OnLoan, Available}
+  +isAvailableForLoan()
+  +getBookInfo()
+  +searchBook()
+  +addBook()
+  +updateBook()
+  +deleteBook()
+}
+
+' Reservation entity
+class Reservation {
+  -reservationID : String
+  -memberID : String
+  -ISBN : String
+  -reservationDate : DateTime
+  +createReservation()
+  +cancelReservation()
+  +getReservationInfo()
+  +searchReservation()
+}
+
+' Loan entity
+class Loan {
+  -loanID : String
+  -memberID : String
+  -bookID : String
+  -loanDate : DateTime
+  -dueDate : DateTime
+  +processLoan()
+  +confirmLoan()
+  +extendLoan()
+  +getLoanHistory()
+}
+
+' Return entity
+class Return {
+  -returnID : String
+  -loanID : String
+  -returnDate : DateTime
+  +processReturn()
+  +confirmReturn()
+  +checkOverdue()
+  +notifyReservedMember()
+}
+
+' LoanHistory entity
+class LoanHistory {
+  -historyID : String
+  -bookID : String
+  -memberID : String
+  -loanDate : DateTime
+  -returnDate : DateTime
+  +recordHistory()
+  +getHistory()
+}
+
+' Relationships
+Member "1" -- "0..*" Reservation : makes
+Member "1" -- "0..*" Loan : borrows
+Loan "1" -- "1" Book : refers to
+Return "1" -- "1" Loan : returns
+Book "1" -- "0..*" LoanHistory : has
+
+@enduml

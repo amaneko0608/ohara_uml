@@ -1,25 +1,76 @@
-@startuml
-actor 顧客
+@startuml 図書館システム-図書返却シーケンス図
+hide footbox
+skinparam boundaryBackgroundColor #D5E8D4
+skinparam controlBackgroundColor  #F8CECC
+skinparam entityBackgroundColor   #DAE8FC
 
-rectangle Boundary {
-  boundary 商品画面
-  boundary カート画面
-}
+actor 事務職員 as A
+boundary "メニュー画面" as B1
+boundary "返却一覧画面" as B2
+boundary "返却完了画面" as B3
+control "図書返却処理" as C1
 
-rectangle Control {
-  control カート追加処理
-  control 在庫確認処理
-}
+entity "図書情報テーブル" as BookDB
+entity "返却情報テーブル" as ReturnDB
+entity "予約情報テーブル" as ReserveDB
 
-rectangle Entity {
-  entity 在庫情報
-  entity カート
-}
+== 返却開始 ==
+A -> B1: 返却メニューを押下()
+activate B1
+B1 -> B2: 返却一覧画面を表示()
+deactivate B1
+activate B2
 
-顧客 --> 商品画面 : 「カートに入れる」をクリック
-商品画面 --> カート追加処理
-カート追加処理 --> 在庫確認処理
-在庫確認処理 --> 在庫情報
-カート追加処理 --> カート : 数量・金額更新
-カート追加処理 --> カート画面 : 更新内容表示
+== 管理番号入力 ==
+A -> B2: 返却図書の管理番号を入力()
+B2 -> C1: 図書情報取得
+activate C1
+C1 -> BookDB: 管理番号で検索
+activate BookDB
+BookDB --> C1: 図書情報（書名・貸出状況・返却期限）
+deactivate BookDB
+
+alt 管理番号未登録
+    C1 --> B2: 「管理番号を確認してください。」と表示
+end
+
+alt 返却期限過ぎ
+    C1 --> B2: 「返却期限過ぎています。赤字で表示」とメッセージ
+end
+
+alt 貸出中でない
+    C1 --> B2: 「この図書は貸し出されていません。」と表示
+end
+
+C1 --> B2: 返却一覧に図書情報追加
+deactivate C1
+
+== 返却確定 ==
+A -> B2: 返却ボタン押下()
+B2 -> C1: 返却処理
+activate C1
+
+alt 返却する図書が一冊も入力されていない
+    C1 --> B2: 「返却する図書が入力されていません。」と表示
+end
+
+C1 -> ReturnDB: 返却情報(管理番号, 会員番号, 返却日)を保存
+activate ReturnDB
+ReturnDB --> C1: 保存完了
+deactivate ReturnDB
+
+alt 図書が予約されている
+    C1 -> ReserveDB: 最古予約者を取得
+    activate ReserveDB
+    ReserveDB --> C1: 予約者情報
+    deactivate ReserveDB
+    C1 -> B2: 「予約されているので予約カウンターへ」と青字表示
+    C1 -> 予約者: メール送信
+end
+
+C1 -> B3: 返却完了画面表示
+deactivate C1
+deactivate B2
+activate B3
+
 @enduml

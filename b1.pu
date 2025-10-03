@@ -1,0 +1,84 @@
+@startuml LibrarySystem_BookLoan_Sequence
+hide footbox
+skinparam boundaryBackgroundColor #D5E8D4
+skinparam controlBackgroundColor  #F8CECC
+skinparam entityBackgroundColor   #DAE8FC
+
+actor Librarian as A
+boundary "Menu Screen" as B1
+boundary "Book Loan Screen" as B2
+boundary "Loan Confirmation Screen" as B3
+control "LoanProcessor" as C1
+
+entity "Member Table" as MemberDB
+entity "Book Table" as BookDB
+entity "Loan Table" as LoanDB
+
+== Start Loan ==
+A -> B1: ClickLoanMenu()
+activate B1
+B1 -> B2: DisplayLoanScreen()
+deactivate B1
+activate B2
+
+== Member ID Input ==
+A -> B2: EnterMemberIDAndConfirm()
+B2 -> C1: ValidateMember()
+activate C1
+C1 -> MemberDB: SearchByMemberID()
+activate MemberDB
+MemberDB --> C1: 氏名・会員種別
+deactivate MemberDB
+
+alt MemberID empty or not registered
+    C1 --> B2: DisplayMessage("Please check member ID")
+end
+
+C1 --> B2: DisplayMemberInfo()
+deactivate C1
+
+== Book ID Input ==
+A -> B2: EnterBookIDAndConfirm()
+B2 -> C1: ValidateBook()
+activate C1
+C1 -> BookDB: SearchByBookID()
+activate BookDB
+BookDB --> C1: Title・LoanStatus
+deactivate BookDB
+
+alt BookID empty or not registered
+    C1 --> B2: DisplayMessage("Please check book ID")
+end
+
+alt LoanLimitExceeded or StudentTryingMagazine
+    C1 --> B2: DisplayMessage("Cannot loan this book")
+end
+
+C1 --> B2: DisplayBookInLoanList()
+deactivate C1
+
+alt CancelBookFromLoanList
+    A -> B2: ClickCancelButton()
+    B2 -> C1: RemoveBookFromLoanList()
+    C1 --> B2: 削除完了
+end
+
+== Confirm Loan ==
+A -> B2: ClickLoanButton()
+B2 -> C1: RegisterLoan()
+activate C1
+
+alt NoBooksSelected
+    C1 --> B2: DisplayMessage("Please enter books to loan")
+end
+
+C1 -> LoanDB: SaveLoanInfo(BookID, MemberID, LoanDate, ReturnDueDate)
+activate LoanDB
+LoanDB --> C1: 保存完了
+deactivate LoanDB
+C1 -> B3: DisplayLoanConfirmation()
+deactivate C1
+deactivate B2
+activate B3
+
+@enduml

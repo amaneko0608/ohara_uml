@@ -1,0 +1,76 @@
+@startuml LibrarySystem_BookReturn_Sequence
+hide footbox
+skinparam boundaryBackgroundColor #D5E8D4
+skinparam controlBackgroundColor  #F8CECC
+skinparam entityBackgroundColor   #DAE8FC
+
+actor Librarian as A
+boundary "Menu Screen" as B1
+boundary "Return List Screen" as B2
+boundary "Return Confirmation Screen" as B3
+control "ReturnProcessor" as C1
+
+entity "Book Table" as BookDB
+entity "Return Table" as ReturnDB
+entity "Reservation Table" as ReserveDB
+
+== Start Return ==
+A -> B1: ClickReturnMenu()
+activate B1
+B1 -> B2: DisplayReturnListScreen()
+deactivate B1
+activate B2
+
+== Book ID Input ==
+A -> B2: EnterBookIDForReturn()
+B2 -> C1: RetrieveBookInfo()
+activate C1
+C1 -> BookDB: SearchByBookID()
+activate BookDB
+BookDB --> C1: 図書情報（書名・貸出状況・返却期限）
+deactivate BookDB
+
+alt BookID not registered
+    C1 --> B2: DisplayMessage("Please check book ID")
+end
+
+alt Past due date
+    C1 --> B2: DisplayMessage("Return date exceeded. Display in red")
+end
+
+alt Book not loaned
+    C1 --> B2: DisplayMessage("This book is not currently loaned")
+end
+
+C1 --> B2: AddBookToReturnList()
+deactivate C1
+
+== Confirm Return ==
+A -> B2: ClickReturnButton()
+B2 -> C1: ProcessReturn()
+activate C1
+
+alt No books entered
+    C1 --> B2: DisplayMessage("No books entered for return")
+end
+
+C1 -> ReturnDB: SaveReturnInfo(BookID, MemberID, ReturnDate)
+activate ReturnDB
+ReturnDB --> C1: 保存完了
+deactivate ReturnDB
+
+alt Book is reserved
+    C1 -> ReserveDB: RetrieveOldestReservation()
+    activate ReserveDB
+    ReserveDB --> C1: 予約者情報
+    deactivate ReserveDB
+    C1 -> B2: DisplayMessage("Book reserved, move to reservation counter", color=blue)
+    C1 -> ReservationMember: SendEmail()
+end
+
+C1 -> B3: DisplayReturnConfirmation()
+deactivate C1
+deactivate B2
+activate B3
+
+@enduml
