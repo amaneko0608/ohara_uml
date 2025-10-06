@@ -1,4 +1,4 @@
-@startuml 図書館システム-図書予約シーケンス図（DB詳細版）
+@startuml 図書館システム-図書予約シーケンス図
 hide footbox
 skinparam boundaryBackgroundColor #D5E8D4
 skinparam controlBackgroundColor  #F8CECC
@@ -52,7 +52,7 @@ end
 
 C1 -> BookDB: 書名で図書検索
 activate BookDB
-BookDB --> C1: 図書一覧（書名・著者・出版社・管理番号・貸出状況）
+BookDB --> C1: 図書一覧（書名・著者・出版社）
 deactivate BookDB
 C1 --> B2: 図書一覧表示
 deactivate C1
